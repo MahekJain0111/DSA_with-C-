@@ -1,0 +1,38 @@
+#include <iostream>
+#include<string>
+#include<algorithm>
+
+
+using namespace std;
+int raised(int n,int p);
+
+
+int main()
+{
+int n,ans,p;
+cin>>n;
+cin>>p;
+ans = raised(n,p);
+cout <<ans;
+
+}
+int raised(int n,int p)
+{
+    int total;
+    if (p==1)
+    {
+        return n;
+    }
+    else if (p==0)
+    {
+        return 1;
+    }
+    else
+    {
+      total = n*raised(n,p-1) ;
+      return total;
+    }
+
+
+
+}
