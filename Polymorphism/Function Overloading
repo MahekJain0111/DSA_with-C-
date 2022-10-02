@@ -1,0 +1,36 @@
+#include <iostream>
+#include<string>
+#include<algorithm>
+
+
+using namespace std;
+class a
+{
+public:
+    void fun()
+    {
+        cout<<"no arguments";
+    }
+    void fun(int x)
+    {
+       cout<<" function with 1 argument";
+    }
+     void fun(int x,int y)
+    {
+       cout<<" function with 2 argument";
+    }
+};
+
+int main()
+{
+    a obj;
+    obj.fun();
+    cout<<"\n";
+    obj.fun(2);
+     cout<<"\n";
+    obj.fun(2,4);
+     cout<<"\n";
+
+}
+
+
