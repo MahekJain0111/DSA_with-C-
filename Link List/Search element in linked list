@@ -1,0 +1,88 @@
+#include <iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+class node
+{public:
+    int data;
+    node *next;
+
+};
+
+int main()
+{
+
+    node *head,*curr,*temp;
+    int n;
+    int d,i;
+    cout<<"enter number node";
+    cin>>n;
+
+
+
+
+    head = NULL;
+    curr = NULL;
+    for (i=0;i<n;i++)
+    {
+        if (head == NULL)
+        {
+              node *temp = new node();
+             cout<<"enter head node";
+             cin >>d;
+             temp->data = d;
+             temp->next = NULL;
+             head = temp;
+             curr = head;
+
+
+        }
+        else
+        {
+            temp = new node();
+             cout<<"enter  node data";
+             cin >>d;
+             temp->data = d;
+             temp->next = NULL;
+              curr->next = temp;
+              curr = temp;
+
+        }
+    }
+    temp =head;
+while (temp!=NULL)
+{
+    cout<<temp->data;
+    temp=temp->next;
+}
+int element ;
+cout<<"enter element to be searched ";
+cin>>element ;
+
+temp=head;
+int flag;
+while (temp!=NULL)
+{
+    if (temp->data==element)
+    {
+        cout<<"element found";
+        cout<<"\n";
+        temp = temp->next;
+        flag =1;
+
+    }
+    else
+    {
+        temp = temp->next;
+        flag = 0;
+    }
+}
+if (flag == 0)
+{
+    cout<<"element not found";
+}
+
+
+}
+
+
