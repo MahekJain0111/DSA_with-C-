@@ -1,0 +1,42 @@
+#include <iostream>
+#include<string>
+#include<algorithm>
+
+
+using namespace std;
+class parent
+{
+    public:
+    void print_()
+    {
+        cout<<" Parent class";
+    }
+};
+class child:public parent {
+    public:
+    void print_1()
+    {
+        cout<<" class inherited from parent";
+    }
+
+
+};
+
+class child1:public child{ public:
+void print_2()
+{cout<<"both classes inherited";}};
+int main()
+{
+   child1 b;
+
+ b.print_();
+ cout<<"\n";
+   b.print_1();
+   cout<<"\n";
+  b.print_2();
+  cout<<"\n";
+
+
+}
+
+
