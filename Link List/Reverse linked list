@@ -1,0 +1,121 @@
+#include <iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+class node* reverse_list(class node *head);
+
+void display( class node*head);
+class node
+{public:
+    int data;
+    node *next;
+
+};
+
+int main()
+{
+
+    class node *head,*curr,*temp;
+    int n,ch;
+    int d,i;
+    cout<<"enter number node";
+    cin>>n;
+
+
+
+
+    head = NULL;
+    curr = NULL;
+    for (i=0;i<n;i++)
+    {
+        if (head == NULL)
+        {
+              node *temp = new node();
+             cout<<"enter head node";
+             cin >>d;
+             temp->data = d;
+             temp->next = NULL;
+             head = temp;
+             curr = head;
+
+
+        }
+        else
+        {
+            temp = new node();
+             cout<<"enter  node data";
+             cin >>d;
+             temp->data = d;
+             temp->next = NULL;
+              curr->next = temp;
+              curr = temp;
+
+        }
+    }
+    while(1)
+    {
+
+
+   cout<<"enter choice";
+   cout<<"\n";
+   cout<< "press 1 for reverse "<< "\n"<< "press 2 for display";
+   cin>>ch;
+   switch(ch)
+   {
+
+
+
+   case 1:head = reverse_list( head);
+          break;
+
+   case 2:display(head);
+        break;
+  default :cout<<"enter valid statement";
+  break;
+   }
+    }
+
+
+
+
+
+}
+class node* reverse_list(class node *head)
+{
+
+class node*temp,*cur,*prev;
+
+prev =NULL;
+cur=head;
+
+while(cur!=NULL)
+{
+    temp=cur->next;
+    cur->next = prev;
+    prev = cur;
+    cur=temp;
+
+}
+return prev;
+
+
+
+
+
+
+
+}
+void display( node*head)
+{
+    node *temp;
+    temp = head;
+    while (temp!=NULL)
+    {
+        cout<<temp->data;
+        cout<<"\t";
+        temp=temp->next;
+    }
+}
+
+
+
