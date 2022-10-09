@@ -1,0 +1,65 @@
+#include <iostream>
+using namespace std;
+class node
+{public:
+    int data;
+    node *next;
+    node *prev;
+};
+void display(class node*head);
+
+int main() {
+	// your code goes here
+	int n,i;
+	cout<<"enter number of nodes"<<"\n";
+	cin>>n;
+	class node*head;
+	class node*temp;
+	head= NULL;
+	for(i=0;i<n;i++)
+    {
+         class node *cur;
+
+        if (head == NULL)
+        {
+            temp=new node();
+            int p;
+            cout<<"enter head data";
+            cin>>temp->data;
+
+            head = temp;
+            cur=temp;
+            temp->next=NULL;
+            temp->prev=NULL;
+
+        }
+
+
+
+    else
+        {
+            temp=new node();
+            int p;
+            cout<<"enter node data"<<"\n";
+            cin>>p;
+            temp->data =p;
+            cur->next=temp;
+            temp->next = NULL;
+            temp->prev = cur;
+            cur = cur->next;
+        }
+    }
+    display(head);
+
+	return 0;
+}
+void display(class node*head)
+{
+    class node *temp;
+    temp=head;
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<"\t";
+        temp=temp->next;
+    }
+}
