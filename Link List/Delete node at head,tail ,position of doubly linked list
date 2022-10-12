@@ -1,0 +1,189 @@
+#include <iostream>
+using namespace std;
+class node
+{public:
+    int data;
+    node *next;
+    node *prev;
+};
+void display(class node*head);
+class node* delete_head(class node *head);
+void delete_tail(class node *head);
+
+class node* delete_position(class node *head,int position);
+
+int main() {
+	// your code goes here
+	int n,i;
+	cout<<"enter number of nodes"<<"\n";
+	cin>>n;
+	class node*head;
+	class node*temp;
+	head= NULL;
+	for(i=0;i<n;i++)
+    {
+         class node *cur;
+
+        if (head == NULL)
+        {
+            temp=new node();
+            int p;
+            cout<<"enter head data";
+            cin>>temp->data;
+
+            head = temp;
+            cur=temp;
+            temp->next=NULL;
+            temp->prev=NULL;
+
+        }
+
+
+
+    else
+        {
+            temp=new node();
+            int p;
+            cout<<"enter node data"<<"\n";
+            cin>>p;
+            temp->data =p;
+            cur->next=temp;
+            temp->next = NULL;
+            temp->prev = cur;
+            cur = cur->next;
+        }
+    }
+    while(1)
+    {
+int ch,d;
+
+   cout<<"enter choice";
+   cout<<"1 for head deletion"<<"\n";
+   cout<<"2 for display"<<"\n";
+    cout<<"3 for tail deletion"<<"\n";
+    cout<<"4 for position deletion"<<"\n";
+   cin>>ch;
+   switch(ch)
+   {
+
+
+   case 1:
+          head= delete_head(head);
+          break;
+
+   case 2:display(head);
+        break;
+   case 3:delete_tail(head);
+         break;
+  case 4:
+     int position;
+          cout<<"enter position";
+          cin>>position;
+
+          head = delete_position( head,position);
+          break;
+  default :cout<<"enter valid statement";
+  break;
+   }
+    }
+
+
+
+
+
+
+	return 0;
+}
+class node* delete_head(class node *head)
+{
+     class node *temp,*cur;
+     cur = head;
+     temp=cur->next;
+
+     temp->prev = NULL;
+      head=temp;
+     delete cur ;
+
+     return head;
+}
+void display(class node*head)
+{
+    class node *temp;
+    temp=head;
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<"\t";
+        temp=temp->next;
+    }
+}
+void delete_tail(node *head)
+{
+
+    node*curr;
+    curr = head;
+    while (curr->next!=NULL)
+    {
+        curr=curr->next;
+    }
+    curr->prev->next = NULL;
+    delete curr;
+
+
+
+
+
+
+}
+class node* delete_position(class node *head,int position)
+{
+    node *temp;
+    int i;
+     node *cur;
+     cur=head;
+
+     if (position==1)
+     {
+
+     temp=cur->next;
+
+     temp->prev = NULL;
+      head=temp;
+     delete cur ;
+
+     return head;
+     }
+
+
+     else
+     {
+
+
+
+ for (i=0;i<position-1;i++)
+ {if (cur->next->next==NULL)
+ {
+node *temp;
+temp=cur->next;
+delete temp;
+     cur->next = NULL;
+
+    return head;
+
+
+ }
+ else
+ {
+     cur=cur->next;
+ }
+ }
+
+ cur->prev->next=cur->next;
+ cur->next->prev=cur->prev;
+ delete cur;
+ return head;
+     }
+
+
+
+
+}
