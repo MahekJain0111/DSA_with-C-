@@ -1,0 +1,74 @@
+#include <iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+class node
+{public:
+    int data;
+    node *next;
+
+};
+
+int main()
+{
+
+    node *head,*curr,*prev;;
+    int n,m;
+    int d,i;
+    cout<<"enter number node in  list";
+    cin>>n;
+
+
+
+
+    head = NULL;
+    curr = NULL;
+    for (i=0;i<n;i++)
+    {
+        if (head == NULL)
+        {
+              node *temp = new node();
+             cout<<"enter head node";
+             cin >>d;
+             temp->data = d;
+             temp->next = NULL;
+             head = temp;
+             curr = head;
+
+
+        }
+        else
+        {
+            node *temp = new node();
+             cout<<"enter  node data";
+             cin >>d;
+             temp->data = d;
+             temp->next = NULL;
+              curr->next = temp;
+              curr = temp;
+
+        }
+    }
+    curr = head;
+    prev=head->next;
+    while(curr!=NULL)
+    {
+        cout<<curr->data;
+        curr=curr->next->next;
+    }
+     while(prev!=NULL)
+    {
+        cout<<prev->data;
+        prev=prev->next->next;
+    }
+
+
+
+
+
+
+
+
+
+
+}
