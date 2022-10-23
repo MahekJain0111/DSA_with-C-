@@ -1,0 +1,133 @@
+#include <iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+class node
+{public:
+    int data;
+    node *next;
+};
+class node*enque( int d,node*front_,node*back_);
+void display( node*front_,node*back_);
+class node*dequeue(node*front_,node*back_);
+void isempty( node*front_,node*back_);
+
+
+int main()
+{
+    class node*front_,*back_;
+    front_=NULL;
+    back_=NULL;
+    int n,i;
+	cout<<"enter number of initial queue elements"<<"\n";
+	cin>>n;
+
+	for(i=0;i<n;i++)
+    {
+         class node *cur,*temp;
+
+        if (front_ == NULL)
+        {
+            temp=new node();
+            int p;
+            cout<<"enter data"<<"\n";
+            cin>>temp->data;
+
+            front_= temp;
+            back_=temp;
+
+            temp->next=NULL;
+            cur =temp;
+
+
+        }
+
+
+
+    else
+        {
+            temp=new node();
+            int p;
+            cout<<"enter  data"<<"\n";
+            cin>>p;
+
+            temp->data =p;
+           temp->next=NULL;
+           cur->next=temp;
+           back_=temp;
+        }
+    }
+    while(1)
+    {
+int ch,d;
+
+   cout<<"enter choice"<<"\n";
+   cout<<"1 for enqueue"<<"\n";
+   cout<<"2 for display"<<"\n";
+    cout<<"3 for dequeue"<<"\n";
+    cout<<"4 for is empty"<<"\n";
+   cin>>ch;
+   switch(ch)
+   {
+
+
+   case 1:cout<<"enter new data in queue";
+          cin>>d;
+          back_ = enque( d,front_,back_);
+          break;
+
+   case 2:display(front_,back_);
+        break;
+  case 3:
+         front_=dequeue(front_,back_);
+         break;
+  case 4:isempty(front_,back_);
+
+
+          break;
+  default :cout<<"enter valid statement";
+  break;
+   }
+    }
+
+}
+class node*enque( int d,node*front_,node*back_)
+{
+    node *temp;
+    temp=new node();
+    temp->data=d;
+    back_->next=temp;
+    temp->next=NULL;
+    back_=temp;
+    return back_;
+
+}
+void display( node*front_,node*back_)
+{
+    node *temp;
+    temp=front_;
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<"\t";
+        temp=temp->next;
+    }
+}
+class node *dequeue(node*front_,node*back_)
+{
+node*temp;
+temp=front_->next;
+delete front_;
+front_=temp;
+return front_;
+}
+void isempty( node*front_,node*back_)
+{
+    if (front_==NULL)
+    {
+        cout<<"empty"<<"\n";
+    }
+    else
+    {
+        cout<<"not empty"<<"\n";
+    }
+}
