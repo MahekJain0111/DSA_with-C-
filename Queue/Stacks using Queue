@@ -1,0 +1,100 @@
+#include <bits/stdc++.h>
+using namespace std;
+class stack_
+{
+    queue<int>q1,q2,q3;
+public:
+    void push_(int x)
+    {
+        q1.push(x);
+    }
+    int pop_()
+    {
+        while(q1.size()!=1)
+        {
+
+
+        q2.push(q1.front());
+        q1.pop();
+        }
+
+    int p;
+    p=q1.front();
+    q1.pop();
+    while(!q2.empty())
+    {
+
+
+        q1.push(q2.front());
+        q2.pop();
+    }
+    return p;
+    }
+
+    void display()
+    {
+         int l;
+         q3=q1;
+
+    l=q1.size();
+        int i;
+        for(i=0;i<l;i++)
+        {
+              while(q3.size()!=1)
+        {
+
+
+        q2.push(q3.front());
+        q3.pop();
+        }
+
+    int p;
+    cout<<q3.front()<<"\t";
+    q3.pop();
+
+    while(!q2.empty())
+    {
+
+
+        q3.push(q2.front());
+        q2.pop();
+    }
+
+
+        }
+
+    }
+};
+
+int main()
+{
+
+stack_ q;
+    while(1)
+    {
+        int x,ch;
+        cout<<"enter choice"<<"\n";
+        cout<<"1 for push"<<"\n";
+        cout<<"2 for pop"<<"\n";
+         cout<<"3 for display"<<"\n";
+        cin>>ch;
+        switch(ch)
+        {
+        case 1:cout<<"enter data to added"<<"\n";
+            cin>>x;
+            q.push_(x);
+            break;
+            case 2: cout<<q.pop_()<<"\n";
+            break;
+            case 3:q.display();
+
+            default:break;
+        }
+
+    }
+
+
+
+
+
+}
