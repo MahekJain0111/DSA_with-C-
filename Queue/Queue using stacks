@@ -1,0 +1,76 @@
+#include <bits/stdc++.h>
+using namespace std;
+class que
+{
+    stack<int>s1,s2;
+public:
+    void enQueue(int x)
+    {
+        s1.push(x);
+    }
+    int deQueue()
+    {
+        while(!s1.empty())
+        {
+            s2.push(s1.top());
+            s1.pop();
+        }
+        int x;
+        x=s2.top();
+        s2.pop();
+         while(!s2.empty())
+        {
+            s1.push(s2.top());
+            s2.pop();
+        }
+        return x;
+    }
+    void display()
+    {
+         while(!s1.empty())
+        {
+            s2.push(s1.top());
+            s1.pop();
+        }
+
+         while(!s2.empty())
+        {
+            cout<<s2.top()<<"\n";
+            s1.push(s2.top());
+            s2.pop();
+        }
+
+    }
+};
+
+
+int main()
+{
+    que q;
+    while(1)
+    {
+        int x,ch;
+        cout<<"enter choice"<<"\n";
+        cout<<"1 for enqueue"<<"\n";
+        cout<<"2 for dequeue"<<"\n";
+         cout<<"3 for display"<<"\n";
+        cin>>ch;
+        switch(ch)
+        {
+        case 1:cout<<"enter data to added"<<"\n";
+            cin>>x;
+            q.enQueue(x);
+            break;
+            case 2: cout<<q.deQueue()<<"\n";
+            break;
+            case 3:q.display();
+            break;
+            default:break;
+        }
+
+    }
+
+
+
+
+}
