@@ -30,7 +30,7 @@ struct node
 };
 struct node *newnode(struct node *root,int key);
 struct node *insert_(struct node *root,int key);
-void sum_(struct node *root);
+int sum_(struct node *root);
 int main()
 {
     struct node*root;
@@ -39,7 +39,7 @@ while(1)
 {   int ch;
 cout<<"enter choice"<<"\n";
  cout<<"1.insert"<<"\n";
- cout<<"2.Sum of nodes"<<"\n";
+ cout<<"2.sum of nodes "<<"\n";
 cin>>ch;
 switch(ch)
 {
@@ -48,7 +48,9 @@ switch(ch)
               cin>>key;
         root = insert_(root,key);
         break;
-        case 2: sum_(root);
+        case 2:
+            cout<<sum_(root) ;
+        break;
 
          break;
 
@@ -87,34 +89,16 @@ struct node * insert_(struct node *root,int key)
 
 
 }
- void sum_(struct node *root)
- {
-     queue<node*>q;
-     int sum =0;
-     if(root==NULL)
-     {
-         return ;
-     }
-     else
-     {
-         q.push(root);
-         while(!q.empty())
-         {
-             struct node *temp = q.front();
-             sum = sum +temp->data;
+int sum_(struct node *root)
+{
 
-             if(temp->right!=NULL)
-             {
-                 q.push(temp->right);
-             }
-            if(temp->left!=NULL)
-             {
-                 q.push(temp->left);
-             }
-             q.pop();
-         }
+if(root == NULL)
+{
+    return 0;
+}
+else
+{
+    return sum_(root->left)+sum_(root->right)+root->data;
+}
 
-     }
-     cout<<sum;
-
- }
+}
