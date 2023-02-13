@@ -1,0 +1,144 @@
+#include <map>
+#include <set>
+#include <list>
+#include <cmath>
+#include <ctime>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <string>
+#include <bitset>
+#include <cstdio>
+#include <limits>
+#include <vector>
+#include <climits>
+#include <cstring>
+#include <cstdlib>
+#include <fstream>
+#include <numeric>
+#include <sstream>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+
+using namespace std;
+struct node
+{
+    int data;
+    struct node*left;
+    struct node *right;
+};
+struct node *newnode(struct node *root,int key);
+struct node *insert_(struct node *root,int key);
+void sumatlevel(struct node *root,int k);
+int main()
+{
+    struct node*root;
+   root = NULL;
+while(1)
+{   int ch;
+cout<<"enter choice"<<"\n";
+ cout<<"1.insert"<<"\n";
+ cout<<"2.Sum of nodes at k level "<<"\n";
+cin>>ch;
+switch(ch)
+{
+    case 1: int key;
+              cout<<"enter  data";
+              cin>>key;
+        root = insert_(root,key);
+        break;
+        case 2:int k;
+        cout<<"enter level";
+        cin>>k;
+            sumatlevel(root,k);
+        break;
+
+         break;
+
+
+
+}
+
+}
+
+
+}
+struct node *newnode(struct node*root,int key)
+{
+    struct node *temp;
+    temp = new node();
+    temp->data = key;
+    temp->left = NULL;
+    temp->right = NULL;
+    return temp;
+
+}
+struct node * insert_(struct node *root,int key)
+{
+    if(root == NULL)
+    {
+        return newnode(root,key);
+    }
+    else if(root->data > key)
+    {
+        root->left = insert_(root->left,key);
+    }
+    else
+    {
+        root->right = insert_(root->right,key);
+    }
+
+
+}
+void  sumatlevel(struct node *root,int k)
+{
+    queue<node*>q;
+    int level = 0;
+     int sum =0;
+    if(root==NULL)
+    {
+        return;
+    }
+
+
+      q.push(root);
+        q.push(NULL);
+        while(!q.empty())
+        {
+            struct node *temp = q.front();
+            q.pop();
+            if(temp!=NULL)
+
+            {
+                if(level == k)
+                {
+                   sum = sum +temp->data;
+                }
+               if(temp->left !=NULL)
+               {
+                   q.push(temp->left);
+               }
+               if(temp->right !=NULL)
+               {
+                   q.push(temp->right);
+               }
+            }
+              else if(!q.empty())
+            { q.push(NULL);
+            level = level +1;
+
+
+
+
+
+            }
+
+
+
+        }
+        cout<<sum<<"\n";
+
+
+
+}
