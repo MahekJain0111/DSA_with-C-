@@ -1,0 +1,126 @@
+#include <list>
+#include <cmath>
+#include <ctime>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <string>
+#include <bitset>
+#include <cstdio>
+#include <limits>
+#include <vector>
+#include <climits>
+#include <cstring>
+#include <cstdlib>
+#include <fstream>
+#include <numeric>
+#include <sstream>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+
+using namespace std;
+struct node
+{
+    int data;
+    struct node*left;
+    struct node *right;
+};
+struct node *newnode(struct node *root,int key);
+struct node *insert_(struct node *root,int key);
+
+int is_balanced(struct node *root);
+void leftview(struct node *root);
+int main()
+{
+    struct node*root;
+   root = NULL;
+while(1)
+{   int ch;
+cout<<"enter choice"<<"\n";
+ cout<<"1.insert"<<"\n";
+ cout<<"2.Left View of BST "<<"\n";
+
+cin>>ch;
+switch(ch)
+{
+    case 1: int key;
+              cout<<"enter  data";
+              cin>>key;
+        root = insert_(root,key);
+        break;
+        case 2:leftview(root);
+        break;
+       default:break;
+
+
+}
+
+}
+
+
+}
+struct node *newnode(struct node*root,int key)
+{
+    struct node *temp;
+    temp = new node();
+    temp->data = key;
+    temp->left = NULL;
+    temp->right = NULL;
+    return temp;
+
+}
+struct node * insert_(struct node *root,int key)
+{
+    if(root == NULL)
+    {
+        return newnode(root,key);
+    }
+    else if(root->data > key)
+    {
+        root->left = insert_(root->left,key);
+    }
+    else
+    {
+        root->right = insert_(root->right,key);
+    }
+
+
+}
+
+void leftview(struct node *root)
+{
+    queue<node*>q;
+    if(root==NULL)
+    {
+        return ;
+    }
+    q.push(root);
+
+    while(!q.empty())
+    {
+        int n = q.size();
+int i;
+        for(i=0;i<n;i++)
+        { struct node *temp = q.front();
+        q.pop();
+            if(i==n-1)
+            {
+                cout<<temp->data;
+            }
+            if(temp->right!=NULL)
+            {
+                q.push(temp->right);
+            }
+
+            if(temp->left!=NULL)
+            {
+                q.push(temp->left);
+            }
+
+
+
+        }
+
+    }
+}
