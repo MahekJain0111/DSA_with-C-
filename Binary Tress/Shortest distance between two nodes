@@ -1,0 +1,157 @@
+#include <list>
+#include <cmath>
+#include <ctime>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <string>
+#include <bitset>
+#include <cstdio>
+#include <limits>
+#include <vector>
+#include <climits>
+#include <cstring>
+#include <cstdlib>
+#include <fstream>
+#include <numeric>
+#include <sstream>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+
+using namespace std;
+struct node
+{
+    int data;
+    struct node*left;
+    struct node *right;
+};
+struct node *newnode(struct node *root,int key);
+struct node *insert_(struct node *root,int key);
+int lca(struct node*root,int n1,int n2);
+bool getpath(struct node*root,int n,vector<int>&path);
+
+
+
+int main()
+{
+    struct node*root;
+   root = NULL;
+while(1)
+{   int ch;
+cout<<"enter choice"<<"\n";
+ cout<<"1.insert"<<"\n";
+ cout<<"2.Shortest Distance between two nodes"<<"\n";
+
+cin>>ch;
+switch(ch)
+{
+    case 1: int key;
+              cout<<"enter  data";
+              cin>>key;
+        root = insert_(root,key);
+        break;
+        case 2:int n1,n2;
+            cout<<"enter first node"<<"\n";
+              cin>>n1;
+              cout<<"enter second node"<<"\n";
+              cin>>n2;
+            int p = lca(root,n1,n2);
+            cout<<p;
+        break;
+
+
+
+}
+
+}
+
+
+}
+struct node *newnode(struct node*root,int key)
+{
+    struct node *temp;
+    temp = new node();
+    temp->data = key;
+    temp->left = NULL;
+    temp->right = NULL;
+    return temp;
+
+}
+struct node * insert_(struct node *root,int key)
+{
+    if(root == NULL)
+    {
+        return newnode(root,key);
+    }
+    else if(root->data > key)
+    {
+        root->left = insert_(root->left,key);
+    }
+    else
+    {
+        root->right = insert_(root->right,key);
+    }
+
+
+}
+bool getpath(struct node*root,int n,vector<int>&path)
+{
+
+    if(root == NULL)
+    {
+        return false;
+    }
+      path.push_back(root->data);
+    if(root->data ==n)
+    {
+        return true;
+    }
+    if(getpath(root->left,n,path)|| getpath(root->right,n,path))
+    {
+        return true;
+    }
+    path.pop_back();
+    return false;
+}
+
+int lca(struct node*root,int n1,int n2)
+{
+    vector<int>path1,path2;
+     int i,n,pca;
+    if(!getpath(root,n1,path1)||!getpath(root,n2,path2) )
+    {
+        return -1;
+    }
+
+int lc;
+
+    for (i = 0; i < path1.size() && i<path2.size(); i++)
+        if (path1[i] != path2[i])
+        {
+
+
+            lc=path1[i-1];
+            break;
+        }
+            int c1=0,c2=0;
+    for(i=0;i<path1.size();i++)
+    {
+        if(lc == path1[i])
+        {
+            c1=path1.size()-i;
+            break;
+        }
+    }
+     for(i=0;i<path2.size();i++)
+    {
+        if(lc == path2[i])
+        {
+            c2=path2.size()-i;
+            break;
+        }
+    }
+    return c1+c2-2;
+
+
+}
