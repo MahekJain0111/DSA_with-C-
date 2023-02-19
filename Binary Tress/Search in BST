@@ -1,0 +1,127 @@
+#include <list>
+#include <cmath>
+#include <ctime>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <string>
+#include <bitset>
+#include <cstdio>
+#include <limits>
+#include <vector>
+#include <climits>
+#include <cstring>
+#include <cstdlib>
+#include <fstream>
+#include <numeric>
+#include <sstream>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+
+using namespace std;
+struct node
+{
+    int data;
+    struct node*left;
+    struct node *right;
+};
+struct node *newnode(struct node *root,int key);
+struct node *insert_(struct node *root,int key);
+int searchbst(struct node *root , int key);
+
+
+
+int main()
+{
+    struct node*root;
+   root = NULL;
+while(1)
+{   int ch;
+cout<<"enter choice"<<"\n";
+ cout<<"1.insert"<<"\n";
+ cout<<"2.search"<<"\n";
+
+
+cin>>ch;
+switch(ch)
+{
+    case 1: int key;
+              cout<<"enter  data";
+              cin>>key;
+        root = insert_(root,key);
+        break;
+        case 2:int q,k;
+             cout<< "Enter the data to be searched";
+             cin>>q;
+            k= searchbst(root , q);
+            if(k== 0 )
+            {
+
+                cout<<"element present"<<"\n";
+            }
+            else
+            {
+                cout<<"element not present "<<"\n";
+            }
+            break;
+
+
+
+
+}
+
+}
+
+
+}
+struct node *newnode(struct node*root,int key)
+{
+    struct node *temp;
+    temp = new node();
+    temp->data = key;
+    temp->left = NULL;
+    temp->right = NULL;
+    return temp;
+
+}
+struct node * insert_(struct node *root,int key)
+{
+    if(root == NULL)
+    {
+        return newnode(root,key);
+    }
+    else if(root->data > key)
+    {
+        root->left = insert_(root->left,key);
+    }
+    else
+    {
+        root->right = insert_(root->right,key);
+    }
+
+
+}
+int searchbst(struct node *root , int key)
+{
+
+  if(root == NULL)
+  {
+      return 1;
+  }
+  if(root->data == key)
+  {
+      return 0;
+  }
+  int l=1,r=1;
+  l = searchbst(root->left,key);
+  r=searchbst(root->right,key);
+  if(l==0 || r == 0)
+  {
+      return 0;
+  }
+  else
+  {
+      return 1;
+  }
+}
